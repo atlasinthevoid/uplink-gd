@@ -5,7 +5,7 @@
   <strong>peer to peer modular metaverse client</strong>
 </div>
 <div align="center">
-  using rust, websockets, openxr and vulkan 🚀
+  using the godot engine, rust, websockets, openxr and vulkan 🚀
 </div>
 
 <br />
@@ -46,7 +46,7 @@
 ```bash
 git clone https://github.com/atlasinthevoid/uplink
 cd uplink
-cargo run
+godot project.godot
 ```
 
 ## features
