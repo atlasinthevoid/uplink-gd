@@ -5,7 +5,7 @@
   <strong>peer to peer modular metaverse client</strong>
 </div>
 <div align="center">
-  using the godot engine, websockets, openxr and vulkan 🚀
+  using the godot engine and websockets 🚀
 </div>
 
 <br />
