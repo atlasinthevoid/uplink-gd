@@ -32,6 +32,10 @@ func _attach(type: String, parent_entity: String, new_comp: Dictionary) -> Strin
 		print("Attached ", type, " to ", Uuid.short(parent_entity))
 	return new_comp.id
 
+func get_sibling_by_type(child_component: String, type: String) -> String:
+	var component_list = entity[component[child_component].entity]
+	return component_list[type]
+
 func new_entity() -> String:
 	var id = Uuid.v4()
 	entity[id] = {}
