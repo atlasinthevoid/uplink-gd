@@ -8,6 +8,28 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Object",
+"class": &"CommandStore",
+"language": &"GDScript",
+"path": "res://script/command_store.gd"
+}, {
+"base": "Node",
+"class": &"State",
+"language": &"GDScript",
+"path": "res://script/state.gd"
+}, {
+"base": "Object",
+"class": &"Uuid",
+"language": &"GDScript",
+"path": "res://script/uuid.gd"
+}]
+_global_script_class_icons={
+"CommandStore": "",
+"State": "",
+"Uuid": ""
+}
+
 [application]
 
 config/name="uplink"
