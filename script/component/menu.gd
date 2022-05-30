@@ -1,5 +1,3 @@
-extends Object
-
 class_name Menu
 
 static func gen() -> Dictionary:

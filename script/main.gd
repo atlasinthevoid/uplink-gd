@@ -1,6 +1,6 @@
 extends Node
 
-var state
+var state = State.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +9,10 @@ func _ready():
 	init()
 
 func init():
-	print("Setting up xr...");
+	print("Setting up systems...");
+	var xr_system = state.new_entity()
+	state.attach(xr_system, System.gen())
+	
 	get_viewport().use_xr = true
 
 	print("Setting up uplink terminal...");
@@ -47,8 +50,3 @@ func init():
 
 func init_env():
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	for system in state.system:
-		pass

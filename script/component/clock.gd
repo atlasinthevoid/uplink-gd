@@ -1,5 +1,3 @@
-extends Object
-
 class_name Clock
 
 static func gen() -> Dictionary:

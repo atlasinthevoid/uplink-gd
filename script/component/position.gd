@@ -1,5 +1,3 @@
-extends Object
-
 class_name Position
 
 static func gen(position: Vector3) -> Dictionary:

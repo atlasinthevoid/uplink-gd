@@ -1,5 +1,3 @@
-extends Object
-
 class_name Planet
 
 static func gen() -> Dictionary:

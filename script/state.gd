@@ -7,7 +7,6 @@ var component = {}
 var component_by_type = {}
 var history = []
 var debug_log = []
-var system = {}
 var command
 
 func _ready() -> void:

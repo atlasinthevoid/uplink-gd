@@ -1,7 +1,5 @@
 # Note: The code might not be as pretty it could be, since it's written
 # in a way that maximizes performance. Methods are inlined and loops are avoided.
-extends Object
-
 class_name Uuid
 
 const MODULO_8_BIT = 256

@@ -9,12 +9,12 @@
 config_version=5
 
 _global_script_classes=[{
-"base": "Object",
+"base": "RefCounted",
 "class": &"Avatar",
 "language": &"GDScript",
 "path": "res://script/component/avatar.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"Clock",
 "language": &"GDScript",
 "path": "res://script/component/clock.gd"
@@ -24,7 +24,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://script/command_store.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"CreationTime",
 "language": &"GDScript",
 "path": "res://script/component/creation_time.gd"
@@ -34,17 +34,17 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://script/command/get_chunk_position.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"Menu",
 "language": &"GDScript",
 "path": "res://script/component/menu.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"Planet",
 "language": &"GDScript",
 "path": "res://script/component/planet.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"Position",
 "language": &"GDScript",
 "path": "res://script/component/position.gd"
@@ -54,7 +54,12 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://script/state.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
+"class": &"System",
+"language": &"GDScript",
+"path": "res://script/component/system.gd"
+}, {
+"base": "RefCounted",
 "class": &"Terminal",
 "language": &"GDScript",
 "path": "res://script/component/terminal.gd"
@@ -64,17 +69,17 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://script/component/tracker.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"Universe",
 "language": &"GDScript",
 "path": "res://script/component/universe.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"User",
 "language": &"GDScript",
 "path": "res://script/component/user.gd"
 }, {
-"base": "Object",
+"base": "RefCounted",
 "class": &"Uuid",
 "language": &"GDScript",
 "path": "res://script/component/uuid.gd"
@@ -89,6 +94,7 @@ _global_script_class_icons={
 "Planet": "",
 "Position": "",
 "State": "",
+"System": "",
 "Terminal": "",
 "Tracker": "",
 "Universe": "",

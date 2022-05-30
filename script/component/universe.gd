@@ -1,5 +1,3 @@
-extends Object
-
 class_name Universe
 
 static func gen() -> Dictionary:

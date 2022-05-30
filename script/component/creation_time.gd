@@ -1,5 +1,3 @@
-extends Object
-
 class_name CreationTime
 
 static func gen() -> Dictionary:

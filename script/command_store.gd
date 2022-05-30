@@ -1,4 +1,4 @@
-extends Object
+
 
 class_name CommandStore
 

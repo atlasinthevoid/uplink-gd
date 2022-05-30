@@ -1,5 +1,3 @@
-extends Object
-
 class_name Avatar
 
 static func gen() -> Dictionary:

@@ -1,5 +1,3 @@
-extends Object
-
 class_name Terminal
 
 static func gen() -> Dictionary:
