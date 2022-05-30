@@ -6,6 +6,12 @@ class_name Uuid
 
 const MODULO_8_BIT = 256
 
+static func gen(uuid: String) -> Dictionary:
+	var new_comp = {}
+	new_comp["type"] = "uuid"
+	new_comp["value"] = uuid
+	return new_comp
+
 static func getRandomInt() -> int:
 	# Randomize every time to minimize the risk of collisions
 	randomize()

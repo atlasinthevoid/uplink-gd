@@ -39,40 +39,10 @@ func get_sibling_by_type(child_component: String, type: String) -> String:
 func new_entity() -> String:
 	var id = Uuid.v4()
 	entity[id] = {}
-	new_uuid(id, id)
-	new_creation_time(id)
+	attach(id, Uuid.gen(id))
+	attach(id, CreationTime.gen())
 	#print("Created new entity ", Uuid.short(id))
 	return id
 
-func new_component(parent_entity: String, type: String, data: Dictionary) -> String:
-	return _attach(type, parent_entity, data)
-
-func new_uuid(parent_entity: String, uuid: String) -> String:
-	var new_comp = {}
-	new_comp["value"] = uuid
-	return _attach("uuid", parent_entity, new_comp)
-
-func new_terminal(parent_entity: String) -> String:
-	var new_comp = {}
-	return _attach("terminal", parent_entity, new_comp)
-
-func new_position(parent_entity: String) -> String:
-	var new_comp = {}
-	return _attach("position", parent_entity, new_comp)
-
-func new_clock(parent_entity: String) -> String:
-	var new_comp = {}
-	return _attach("clock", parent_entity, new_comp)
-
-func new_universe(parent_entity: String) -> String:
-	var new_comp = {}
-	return _attach("universe", parent_entity, new_comp)
-
-func new_planet(parent_entity: String) -> String:
-	var new_comp = {}
-	return _attach("planet", parent_entity, new_comp)
-
-func new_creation_time(parent_entity: String) -> String:
-	var new_comp = {}
-	new_comp["time"] = Time.get_datetime_dict_from_system(true)
-	return _attach("creation time", parent_entity, new_comp)
+func attach(parent_entity: String, data: Dictionary) -> String:
+	return _attach(data.type, parent_entity, data)
