@@ -1,16 +1,12 @@
 extends Node
-
 class_name Xr
 
 func _init(state: State):
 	state.add_child(self)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var state: State = get_parent()
 	for component in state.component_by_type["origin"]:
