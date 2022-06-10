@@ -10,58 +10,54 @@ class_name MirrorCamera
 func _init(state: State):
 	state.add_child(self)
 
-# https://github.com/19PHOBOSS98/Godot-MirrorInstance
 func _ready():
 	pass
 
 func _process(delta):
 	var state: State = get_parent()
-	for component in state.component_by_type["mirror"]:
+	for component in state.component_by_name["mirror"]:
 		var entity: String = state.component[component].entity
 		if !state.entity[entity].has("game node"):
-			#extends MeshInstance
-			#onready var dummy_cam = $DummyCam
-			#onready var mirror_cam = $View/Camera
-			# Dictionary to remember Meshinstances' cull masks
-			#var a = {}
-			#export(int, 1, 20, 1) var IgnoreLayer = 2
-			# Used to check for variable changes in a loop only when the variable changes
-			#var t = false
+			var mesh: MeshInstance3D = load("scene/mirror.tscn").instance()
+			state.add_child(mesh)
 
 			add_to_group("mirrors")
 			# Sets the viewport_path to the right viewport for every instance of this scene ,Mi2's child(0)='View'
 			#get("material/0").get("shader_param/refl_tx").set("viewport_path",find_node("View").get_path())
 
-			#$View.size = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
+			$View.size = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
 			# When all the camera's layer bits are turned on, the cull mask value is 1048575:  2^0 + 2^1 + 2^2 +...+2^19=1048575
-			#get_node("View/Camera").set("cull_mask",1048575)
+			mesh.get_node("View/Camera").set("cull_mask",1048575)
 			# While every layer is on this turns the chosen layer off
-			#get_node("View/Camera").set_cull_mask_bit(IgnoreLayer-1,false)
+			mesh.get_node("View/Camera").set_cull_mask_bit(state.component[component]["ignore layer"]-1,false)
+			Attach.run(state, "game_node", "mesh instance 3d", entity, mesh)
 		else:
-			#update_cam()
+			var origin: String = state.component[state.component_by_name["origin"]].entity
+			if state.entity[main_camera].has("game node"):
+				update_cam(state.entity[main_camera]["game node"].global_transform, entity)
 			pass
 
 # The player's camera node calls this function to update the mirror-cameras position
 # Shout out to Miziziziz who came up with this: https://www.youtube.com/watch?v=xXUVP6sN-tQ
-func update_cam(main_cam_transform, mesh: MeshInstance3D, dummy_cam: Camera3D, mirror_cam: Camera3D, t: bool):
+func update_cam(main_cam_transform: Transform3D, entity: String):
+	var state: State = get_parent()
+	var mesh: MeshInstance3D = state.entity[entity]["game node"][0]
 	mesh.scale.y *= -1
-	dummy_cam.global_transform = main_cam_transform
+	mesh.get_node("DummyCam").global_transform = main_cam_transform
 	mesh.scale.y *= -1
-	mirror_cam.global_transform = dummy_cam.global_transform
+	mesh.get_node("View/Camera").global_transform = mesh.get_node("DummyCam").global_transform
 	mesh.mirror_cam.global_transform.basis.x *= -1
 	
 	# Syncs mirror size with game window size but only changes mirror's viewport size when game window size changes instead of constantly updating size every second
 	# Checks if game window size is not equal to mirror viewprt size
-	if($View.size != get_viewport().size):
+	if(mesh.get_node("View").size != get_viewport().size):
 		# Interact with 't' to change it to true only if 't' isn't already true
-		if(t == false):
-			t = true
+		if(state.entity[entity]["mirror"][0]["t"] == false):
+			state.entity[entity]["mirror"][0]["t"] = true
 			# Only run once whenever 't' is changed
-			$View.size = get_viewport().size
+			mesh.get_node("View").size = get_viewport().size
 		else:
-			t=false
-			
-			
+			state.entity[entity]["mirror"][0]["t"] = false
 
 # Recursively goes through a PhysicsBody node's branch to remember MeshInstances' layer mask 
 # as it replaces it with the layer mask that the mirror's camera ignores
@@ -105,8 +101,3 @@ func _on_HideArea_body_entered(body, a: Dictionary, IgnoreLayer: int):
 # Puts the original cullmask value back after body exits the hide area
 func _on_HideArea_body_exited(body, a: Dictionary):
 	_restore_Mesh_mask(body, a)
-
-#extends Camera
-
-#func _process(delta):
-#	get_tree().call_group("mirrors","update_cam",global_transform)

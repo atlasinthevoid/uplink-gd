@@ -6,8 +6,8 @@ static func run(state: State):
 	#print("  ", " ticks", )
 	print("  ", state.entity.size(), " entities", )
 	print("  ", state.component.size(), " components")
-	print("  ", state.component_by_type.size(), " types")
+	print("  ", state.component_by_name.size(), " names")
 	print("  ", state.history.size(), " changes")
 
-static func undo(state: State):
+static func undo(_state: State):
 	pass

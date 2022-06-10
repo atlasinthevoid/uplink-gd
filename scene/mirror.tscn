@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8q1fvff4dyue"]
+
+[sub_resource type="PlaneMesh" id="2"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="6"]
+size = Vector3(40, 20, 30)
+
+[sub_resource type="BoxMesh" id="7"]
+
+[node name="Mirror" type="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1, 10, 0)
+mesh = SubResource( "2" )
+
+[node name="HideArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35189e-23, 0, -8.35188e-23, 1, 0, -11.4, 0)
+collision_mask = 1048575
+
+[node name="CollisionShape" type="CollisionShape3D" parent="HideArea"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, -1.90735e-06, 0)
+shape = SubResource( "6" )
+
+[node name="View" type="SubViewport" parent="."]
+shadow_atlas_size = 1
+size = Vector2i(2000, 1000)
+
+[node name="Camera" type="Camera3D" parent="View"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.45605, 12.6183, -31.334)
+cull_mask = 1048573
+current = true
+
+[node name="This should be Invisible" type="MeshInstance3D" parent="View/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.885156, 0)
+visible = false
+mesh = SubResource( "7" )
+
+[node name="DummyCam" type="Position3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35189e-23, 0, -8.35188e-23, 1, 0, 0, 0)
+
+[connection signal="body_entered" from="HideArea" to="." method="_on_HideArea_body_entered"]
+[connection signal="body_exited" from="HideArea" to="." method="_on_HideArea_body_exited"]

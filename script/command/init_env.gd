@@ -1,4 +1,4 @@
 class_name InitEnv
 
-static func run(state: State):
+static func run(_state: State):
 	pass

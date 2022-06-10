@@ -1,7 +1,7 @@
 class_name AddHistory
 
-static func run(state: State, command: String):
+static func run(_state: State, _command: String):
 	pass
 
-static func undo(state: State):
+static func undo(_state: State):
 	pass

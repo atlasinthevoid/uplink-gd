@@ -7,11 +7,11 @@ func _init(state: State):
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	var state: State = get_parent()
-	for component in state.component_by_type["origin"]:
+	for component in state.component_by_name["xr"]:
 		var entity: String = state.component[component].entity
-		if !state.entity[entity].has("game node"):
+		if !state.entity[entity].has("origin"):
 			var origin := XROrigin3D.new()
 			state.add_child(origin)
 			
@@ -31,4 +31,4 @@ func _process(delta):
 			left_controller.tracker = "right_hand"
 			origin.add_child(right_controller)
 			
-			Attach.run(state, entity, GameNode.gen(origin))
+			Attach.run(state, entity, "origin", "xr origin 3d", origin)
