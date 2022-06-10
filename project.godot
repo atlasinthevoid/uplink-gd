@@ -82,7 +82,7 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"MirrorCamera",
 "language": &"GDScript",
-"path": "res://script/system/mirror_camera.gd"
+"path": "res://script/system/mirror_instance.gd"
 }, {
 "base": "RefCounted",
 "class": &"NewEntity",

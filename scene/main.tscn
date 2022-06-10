@@ -8,5 +8,3 @@ script = ExtResource( "1_vauxl" )
 
 [node name="State" type="Node" parent="."]
 script = ExtResource( "2_8s536" )
-
-[node name="XRCamera3D" type="XRCamera3D" parent="."]
