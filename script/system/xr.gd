@@ -9,7 +9,7 @@ func _ready():
 
 func _process(_delta):
 	var state: State = get_parent()
-	for component in state.component_by_name["xr"]:
+	for component in WithName.run(state, "xr"):
 		var entity: String = state.component[component].entity
 		if !state.entity[entity].has("origin"):
 			var origin := XROrigin3D.new()

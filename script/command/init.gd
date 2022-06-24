@@ -3,9 +3,15 @@ class_name Init
 static func run(state: State):
 	print("Setting up systems...");
 	var xr_system = NewEntity.run(state)
-	var xr = Xr.new(state)
-	Attach.run(state, xr_system, "system", "xr", xr)
+	Attach.run(state, xr_system, "xr", "system", Xr.new(state))
 	InitXr.run(state)
+	
+	var avatar_system = NewEntity.run(state)
+	Attach.run(state, avatar_system, "avatar", "system", Avatar.new(state))
+	
+	var file_system = NewEntity.run(state)
+	Attach.run(state, file_system, "file manager", "system", FileManager.new(state))
+	
 	
 	state.get_viewport().use_xr = true
 
